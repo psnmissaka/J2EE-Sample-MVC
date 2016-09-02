@@ -60,7 +60,7 @@ public class SearchRoute extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/search_route.jsp");
-        view.forward(request, response);
+        view.forward(request, response); //redirects to the view specified in the request dispatcher
     }
 
     /**
@@ -74,8 +74,12 @@ public class SearchRoute extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
+//        processRequest(request, response);
+        //form processing is done with doPost() method
+        String currentHalt=request.getParameter("chalt");
+        String destHalt=request.getParameter("dhalt");
+        String weight=request.getParameter("weight");
+        System.out.println(weight);
     }
 
     /**
