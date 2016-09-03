@@ -8,6 +8,10 @@
         <servlet-name>SearchRoute</servlet-name>
         <servlet-class>controllers.SearchRoute</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewRoute</servlet-name>
+        <servlet-class>controllers.ViewRoute</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>searchRoute</servlet-name>
         <url-pattern>/searchRoute</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>SearchRoute</servlet-name>
         <url-pattern>/SearchRoute</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRoute</servlet-name>
+        <url-pattern>/ViewRoute</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -18,8 +18,8 @@
             <div class="label-default">Search Route</div>
             <fieldset>
             <form action="SearchRoute" method="post" class="panel-body"> 
-                Current Halt: <input class="input-group" type="text" name="chalt" required=""><br>
-                Destination Halt: <input class="input-group" type="text" name="dhalt" required=""><br>
+                Current Halt: <input class="input-group" type="text" name="chalt" required><br>
+                Destination Halt: <input class="input-group" type="text" name="dhalt" required><br>
                 Preference: <select name="weight" class="dropdown">
                     <option>Time</option>
                     <option>Distance</option>

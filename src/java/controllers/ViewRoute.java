@@ -9,19 +9,17 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Route;
-import model.Weight;
 
 /**
  *
  * @author HP
  */
-public class SearchRoute extends HttpServlet {
+public class ViewRoute extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +38,10 @@ public class SearchRoute extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchRoute</title>");            
+            out.println("<title>Servlet ViewRoute</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchRoute at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewRoute at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,8 +60,13 @@ public class SearchRoute extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/search_route.jsp");
-        view.forward(request, response); //redirects to the view specified in the request dispatcher
+        Route r = (Route) getServletContext().getAttribute("Route");//getting the set route from the SearchRoute servlet
+//        System.out.println(r.getCurrentHalt()); // displays the current halt on console
+        request.setAttribute("Route", r);//settign the attribute to be sent to the view
+        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/views/view_route.jsp");
+        rd.forward(request, response);
+        
+
     }
 
     /**
@@ -77,23 +80,7 @@ public class SearchRoute extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        //form processing is done with doPost() method
-        String currentHalt=request.getParameter("chalt");
-        String destHalt=request.getParameter("dhalt");
-        String weight=request.getParameter("weight");
-        
-        Route route=new Route();
-         
-        route.setCurrentHalt(currentHalt);
-        route.setDestHalt(destHalt);
-        route.setWeight(Weight.valueOf(weight));
-        
-        ServletContext sc=this.getServletContext(); //servlet context is needed to send data to another servlet
-        sc.setAttribute("Route", route);//setting the attribute Route to be send to the ViewRoute 
-        
-        response.sendRedirect("ViewRoute");
-        
+        processRequest(request, response);
     }
 
     /**
